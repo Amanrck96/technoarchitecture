@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getGalleryImages } from '@/lib/data'
 import GalleryGrid from './GalleryGrid'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function GalleryPage() {
-  const images = await prisma.galleryImage.findMany({ orderBy: { order: 'asc' } })
+  const images = await getGalleryImages()
 
   return (
     <div className="pt-20">

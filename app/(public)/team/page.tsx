@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getTeam } from '@/lib/data'
 import Image from 'next/image'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function TeamPage() {
-  const team = await prisma.teamMember.findMany({ orderBy: { order: 'asc' } })
+  const team = await getTeam()
 
   return (
     <div className="pt-20">

@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getContactBlocks } from '@/lib/data'
 import ContactForm from './ContactForm'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
@@ -9,10 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ContactPage() {
-  const blocks = await prisma.contentBlock.findMany({
-    where: { key: { in: ['contact-address', 'contact-phone', 'contact-email'] } },
-  })
-  const blockMap = Object.fromEntries(blocks.map(b => [b.key, b.body]))
+  const blockMap = await getContactBlocks()
 
   return (
     <div className="pt-20">

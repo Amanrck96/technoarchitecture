@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getBlogPostBySlug, getBlogPostSlugs } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -7,19 +7,15 @@ import type { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
-  try {
-    const posts = await prisma.blogPost.findMany({ where: { publishedAt: { not: null } }, select: { slug: true } })
-    return posts.map(p => ({ slug: p.slug }))
-  } catch {
-    return []
-  }
+  const slugs = await getBlogPostSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 type PageProps<T> = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata(props: PageProps<'/blog/[slug]'>): Promise<Metadata> {
   const { slug } = await props.params
-  const post = await prisma.blogPost.findUnique({ where: { slug } })
+  const post = await getBlogPostBySlug(slug)
   if (!post) return { title: 'Post Not Found' }
   return {
     title: post.title,
@@ -30,7 +26,7 @@ export async function generateMetadata(props: PageProps<'/blog/[slug]'>): Promis
 
 export default async function BlogPostPage(props: PageProps<'/blog/[slug]'>) {
   const { slug } = await props.params
-  const post = await prisma.blogPost.findUnique({ where: { slug } })
+  const post = await getBlogPostBySlug(slug)
   if (!post || !post.publishedAt) notFound()
 
   // Simple markdown to HTML conversion

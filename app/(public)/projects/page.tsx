@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getProjects } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ProjectsPage() {
-  const projects = await prisma.project.findMany({ orderBy: [{ order: 'asc' }, { year: 'desc' }] })
+  const projects = await getProjects()
 
   return (
     <div className="pt-20">

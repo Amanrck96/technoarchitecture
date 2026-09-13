@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getProjectBySlug, getProjectSlugs } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -8,19 +8,15 @@ import ProjectGallery from './ProjectGallery'
 export const dynamic = 'force-dynamic'
 
 export async function generateStaticParams() {
-  try {
-    const projects = await prisma.project.findMany({ select: { slug: true } })
-    return projects.map(p => ({ slug: p.slug }))
-  } catch {
-    return []
-  }
+  const slugs = await getProjectSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 type PageProps<T> = { params: Promise<{ slug: string }> }
 
 export async function generateMetadata(props: PageProps<'/projects/[slug]'>): Promise<Metadata> {
   const { slug } = await props.params
-  const project = await prisma.project.findUnique({ where: { slug } })
+  const project = await getProjectBySlug(slug)
   if (!project) return { title: 'Project Not Found' }
   return {
     title: project.title,
@@ -31,7 +27,7 @@ export async function generateMetadata(props: PageProps<'/projects/[slug]'>): Pr
 
 export default async function ProjectDetailPage(props: PageProps<'/projects/[slug]'>) {
   const { slug } = await props.params
-  const project = await prisma.project.findUnique({ where: { slug } })
+  const project = await getProjectBySlug(slug)
   if (!project) notFound()
 
   const galleryImages = Array.isArray(project.galleryImageUrls) ? project.galleryImageUrls as string[] : []

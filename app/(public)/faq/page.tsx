@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getFaqItems } from '@/lib/data'
 import FaqAccordion from './FaqAccordion'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function FaqPage() {
-  const items = await prisma.faqItem.findMany({ orderBy: { order: 'asc' } })
+  const items = await getFaqItems()
 
   return (
     <div className="pt-20">

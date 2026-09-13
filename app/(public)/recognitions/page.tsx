@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getRecognitions } from '@/lib/data'
 import Image from 'next/image'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RecognitionsPage() {
-  const recognitions = await prisma.recognition.findMany({ orderBy: [{ year: 'desc' }, { order: 'asc' }] })
+  const recognitions = await getRecognitions()
 
   return (
     <div className="pt-20">

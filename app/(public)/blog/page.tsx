@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getBlogPosts } from '@/lib/data'
 import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal from '@/components/ui/ScrollReveal'
@@ -10,10 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const posts = await prisma.blogPost.findMany({
-    where: { publishedAt: { not: null, lte: new Date() } },
-    orderBy: { publishedAt: 'desc' },
-  })
+  const posts = await getBlogPosts()
 
   return (
     <div className="pt-20">

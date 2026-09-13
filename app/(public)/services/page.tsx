@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getServices } from '@/lib/data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Link from 'next/link'
 import type { Metadata } from 'next'
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ServicesPage() {
-  const services = await prisma.service.findMany({ orderBy: { order: 'asc' } })
+  const services = await getServices()
 
   return (
     <div className="pt-20">

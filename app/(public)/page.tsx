@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { prisma } from '@/lib/prisma'
+import { getHomePageData } from '@/lib/data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata = {
@@ -9,13 +9,7 @@ export const metadata = {
 }
 
 export default async function HomePage() {
-  const [featuredProjects, testimonials, heroTagline, heroSubtext, whyUs] = await Promise.all([
-    prisma.project.findMany({ where: { featured: true }, orderBy: { order: 'asc' }, take: 3 }),
-    prisma.testimonial.findMany({ orderBy: { order: 'asc' } }),
-    prisma.contentBlock.findUnique({ where: { key: 'hero-tagline' } }),
-    prisma.contentBlock.findUnique({ where: { key: 'hero-subtext' } }),
-    prisma.contentBlock.findUnique({ where: { key: 'why-us' } }),
-  ])
+  const { featuredProjects, testimonials, heroTagline, heroSubtext, whyUs } = await getHomePageData()
 
   return (
     <>

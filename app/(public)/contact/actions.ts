@@ -13,10 +13,14 @@ export async function submitContact(formData: FormData) {
     throw new Error('Missing required fields')
   }
 
-  // Save to database
-  await prisma.contactSubmission.create({
-    data: { name, email, phone: phone || null, message },
-  })
+  // Save to database (non-blocking if database is temporarily down)
+  try {
+    await prisma.contactSubmission.create({
+      data: { name, email, phone: phone || null, message },
+    })
+  } catch (dbErr) {
+    console.warn('[DB Offline] Could not persist contact submission to database:', (dbErr as Error).message)
+  }
 
   // Send email notification (non-blocking failure)
   try {

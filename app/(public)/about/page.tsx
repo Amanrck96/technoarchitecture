@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { getAboutData } from '@/lib/data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
 
@@ -8,10 +8,8 @@ export const metadata: Metadata = {
 }
 
 export default async function AboutPage() {
-  const blocks = await prisma.contentBlock.findMany({
-    where: { key: { in: ['vision', 'mission', 'why-us'] } },
-  })
-  const blockMap = Object.fromEntries(blocks.map((b) => [b.key, b]))
+  const { vision, mission, whyUs } = await getAboutData()
+  const blockMap = { vision, mission, 'why-us': whyUs }
 
   const values = [
     { label: 'Excellence', description: 'We pursue the highest standard in design and delivery, never settling for the ordinary.' },
