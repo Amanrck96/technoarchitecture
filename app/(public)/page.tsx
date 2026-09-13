@@ -49,21 +49,35 @@ export default async function HomePage() {
               </ScrollReveal>
 
               <ScrollReveal direction="up" delay={0.4}>
-                <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <Link
-                    href="#concept"
-                    className="inline-flex items-center gap-2.5 px-7 py-4 bg-[#1A1A1A] text-white text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#4A4A4A] transition-all shadow-xs group"
-                  >
-                    <span>Discover The Concept</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center gap-2 px-6 py-4 border border-[#1A1A1A] text-[#1A1A1A] text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#1A1A1A] hover:text-white transition-all group"
-                  >
-                    <span>View Projects</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
+                <div className="space-y-4 pt-1">
+                  <div className="flex flex-wrap items-center gap-4">
+                    <Link
+                      href="/projects"
+                      className="inline-flex items-center gap-2.5 px-8 py-4 bg-[#1A1A1A] text-white text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#4A4A4A] transition-all shadow-sm group"
+                    >
+                      <span>Explore Selected Works</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 px-7 py-4 border border-[#1A1A1A] text-[#1A1A1A] text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#1A1A1A] hover:text-white transition-all group"
+                    >
+                      <span>Initiate Commission</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </Link>
+                  </div>
+
+                  {/* Direct Architectural Shortcut Ticker */}
+                  <div className="pt-2 flex flex-wrap items-center gap-2 text-[11px] font-mono text-[#767676]">
+                    <span className="text-[#1A1A1A] font-semibold uppercase tracking-wider">Selected Works:</span>
+                    <Link href="/projects/the-mantle-house" className="hover:text-[#1A1A1A] hover:underline underline-offset-4 transition-colors">The Mantle House</Link>
+                    <span className="text-[#CCCCCC]">&bull;</span>
+                    <Link href="/projects/between-two-trees" className="hover:text-[#1A1A1A] hover:underline underline-offset-4 transition-colors">Between Two Trees</Link>
+                    <span className="text-[#CCCCCC]">&bull;</span>
+                    <Link href="/projects/belaku" className="hover:text-[#1A1A1A] hover:underline underline-offset-4 transition-colors">Belaku</Link>
+                    <span className="text-[#CCCCCC]">&bull;</span>
+                    <Link href="/projects/far-site-house" className="hover:text-[#1A1A1A] hover:underline underline-offset-4 transition-colors">The Far Site House</Link>
+                  </div>
                 </div>
               </ScrollReveal>
 
