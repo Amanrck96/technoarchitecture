@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, ArrowRight, Compass, Sparkles, Shield, Feather, CheckCircle2 } from 'lucide-react'
+import { ArrowUpRight, ArrowRight, Compass, Sparkles, Shield, Feather, CheckCircle2, Sun, Wind, TreePine, Layers, Award, Building2, Play } from 'lucide-react'
 import { getHomePageData } from '@/lib/sample-data'
 import ScrollReveal from '@/components/ui/ScrollReveal'
 import Hero3D from '@/components/hero/Hero3D'
@@ -51,17 +51,17 @@ export default async function HomePage() {
               <ScrollReveal direction="up" delay={0.4}>
                 <div className="flex flex-wrap items-center gap-4 pt-2">
                   <Link
-                    href="/projects"
+                    href="#concept"
                     className="inline-flex items-center gap-2.5 px-7 py-4 bg-[#1A1A1A] text-white text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#4A4A4A] transition-all shadow-xs group"
                   >
-                    <span>Explore Selected Works</span>
+                    <span>Discover The Concept</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/projects"
                     className="inline-flex items-center gap-2 px-6 py-4 border border-[#1A1A1A] text-[#1A1A1A] text-xs font-semibold uppercase tracking-[0.22em] hover:bg-[#1A1A1A] hover:text-white transition-all group"
                   >
-                    <span>Initiate Project</span>
+                    <span>View Projects</span>
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
@@ -111,28 +111,171 @@ export default async function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. PHILOSOPHY TEASER (Inspired by 2plus.design & Studio Bomb) */}
+      {/* 2. THE TECHNO CONCEPT & ARCHITECTURAL MANIFESTO (CORE STUDIO DNA) */}
       {/* ========================================================================= */}
-      <section className="py-20 lg:py-28 bg-[#1A1A1A] text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            <div className="lg:col-span-4">
-              <span className="text-[11px] font-medium tracking-[0.3em] uppercase text-[#9B9B9B] block mb-3">
-                Studio Creed
-              </span>
-              <p className="text-xs uppercase tracking-[0.2em] text-white/50 font-mono">
-                Techno Architecture &bull; Monograph
-              </p>
-            </div>
-            <div className="lg:col-span-8 space-y-6">
-              <p className="text-2xl sm:text-3xl lg:text-4xl font-serif font-light text-white leading-snug">
-                &ldquo;Architecture is not the imposition of arbitrary form upon nature; it is the discipline of listening to terrain, climate, and the human condition, then sculpting space with honesty and restraint.&rdquo;
-              </p>
-              <div className="flex items-center gap-4 text-xs text-[#9B9B9B] uppercase tracking-[0.2em] pt-4">
-                <span className="w-8 h-px bg-white/30" />
-                <span>Rajesh V., Principal Architect</span>
+      <section id="concept" className="py-24 lg:py-32 bg-[#1A1A1A] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+          {/* Eyebrow & Lead Statement */}
+          <div className="max-w-3xl mb-16 lg:mb-20">
+            <ScrollReveal direction="up">
+              <div className="inline-flex items-center gap-2 text-xs font-mono tracking-[0.3em] uppercase text-[#9B9B9B] mb-4">
+                <span>01</span>
+                <span>/</span>
+                <span>The Architectural Concept</span>
               </div>
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-light text-white tracking-tight leading-[1.12]">
+                Architecture as Climate, Craft & Volumetric Poetry.
+              </h2>
+              <p className="mt-6 text-base sm:text-lg text-[#9B9B9B] font-light leading-relaxed">
+                At Techno Architecture, we reject arbitrary stylistic imposition. Every commission begins by listening deeply to the Deccan terrain, solar geometry, and natural ventilation vectors. We do not construct static boxes; we orchestrate living microclimates where nature and structural discipline merge seamlessly.
+              </p>
+            </ScrollReveal>
+          </div>
+
+          {/* The 4 Architectural Concept Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-20">
+            {/* Concept 01: Courtyard Microclimate */}
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="p-8 lg:p-10 bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all group h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                    <span className="font-mono text-xs tracking-widest text-[#9B9B9B]">CONCEPT // 01</span>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#1A1A1A] transition-colors">
+                      <Wind className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-serif text-white mb-3">
+                    The Courtyard Microclimate
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[#9B9B9B] font-mono mb-4">
+                    Passive Stack Ventilation & Central Lightwells
+                  </p>
+                  <p className="text-sm text-[#CCCCCC] font-light leading-relaxed mb-6">
+                    In South India&apos;s tropical climate, the central open-to-sky courtyard functions as the building&apos;s thermal engine. Warm indoor air rises and vents out through upper clerestory louvers, continuously drawing cool air across landscaped ground-floor verandas and shallow reflective water bodies.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#9B9B9B]">
+                  <span>Built Reference:</span>
+                  <span className="text-white">Between Two Trees &bull; The Far Site House</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Concept 02: The Climate Mantle */}
+            <ScrollReveal direction="up" delay={0.2}>
+              <div className="p-8 lg:p-10 bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all group h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                    <span className="font-mono text-xs tracking-widest text-[#9B9B9B]">CONCEPT // 02</span>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#1A1A1A] transition-colors">
+                      <Sun className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-serif text-white mb-3">
+                    The Climate Mantle Screen
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[#9B9B9B] font-mono mb-4">
+                    Solar Filtering & Kinetic Shadow Choreography
+                  </p>
+                  <p className="text-sm text-[#CCCCCC] font-light leading-relaxed mb-6">
+                    Building envelopes are treated as breathable architectural mantles rather than opaque walls. Custom-perforated metal screens, wire-cut brick jaalis, and cantilevered deep eaves filter harsh western sunlight into kinetic geometric shadows, cutting solar heat gain by 65% while maintaining absolute privacy.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#9B9B9B]">
+                  <span>Built Reference:</span>
+                  <span className="text-white">The Mantle House &bull; Kanasu House</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Concept 03: Biophilic Preservation */}
+            <ScrollReveal direction="up" delay={0.3}>
+              <div className="p-8 lg:p-10 bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all group h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                    <span className="font-mono text-xs tracking-widest text-[#9B9B9B]">CONCEPT // 03</span>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#1A1A1A] transition-colors">
+                      <TreePine className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-serif text-white mb-3">
+                    Biophilic Symbiosis
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[#9B9B9B] font-mono mb-4">
+                    Designing Around Mature Living Canopies
+                  </p>
+                  <p className="text-sm text-[#CCCCCC] font-light leading-relaxed mb-6">
+                    We never clear-fell site vegetation. Architecture curves, steps, and carves itself around existing trees. Mature tree trunks are celebrated as living spatial anchors inside double-height atriums, blurring the threshold between indoor domesticity and the forest canopy.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#9B9B9B]">
+                  <span>Built Reference:</span>
+                  <span className="text-white">Between Two Trees &bull; Aikya Residence</span>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Concept 04: Tectonic Material Truth */}
+            <ScrollReveal direction="up" delay={0.4}>
+              <div className="p-8 lg:p-10 bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all group h-full flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+                    <span className="font-mono text-xs tracking-widest text-[#9B9B9B]">CONCEPT // 04</span>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white group-hover:bg-white group-hover:text-[#1A1A1A] transition-colors">
+                      <Layers className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <h3 className="text-2xl font-serif text-white mb-3">
+                    Tectonic Material Honesty
+                  </h3>
+                  <p className="text-xs uppercase tracking-widest text-[#9B9B9B] font-mono mb-4">
+                    Board-Marked Concrete, Granite & Raw Teak
+                  </p>
+                  <p className="text-sm text-[#CCCCCC] font-light leading-relaxed mb-6">
+                    We avoid synthetic claddings and cosmetic skins. We build with tactile materials in their truthful state: board-marked cast concrete retaining timber grain, hand-dressed local Sadarahalli granite, unplastered wire-cut bricks, and reclaimed teak that develops a graceful patina across decades.
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-[#9B9B9B]">
+                  <span>Built Reference:</span>
+                  <span className="text-white">Belaku Residence &bull; Brindavan</span>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          {/* Principal Architect Creed Banner */}
+          <ScrollReveal direction="up" delay={0.2}>
+            <div className="p-8 lg:p-12 border-t border-b border-white/15 bg-white/[0.02] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+              <div className="max-w-3xl">
+                <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#9B9B9B] block mb-2">
+                  Studio Creed &bull; Rajesh Shivaram, Principal Architect
+                </span>
+                <p className="text-xl sm:text-2xl lg:text-3xl font-serif font-light text-white leading-relaxed italic">
+                  &ldquo;Architecture is not the imposition of arbitrary form upon nature; it is the discipline of listening to terrain, climate, and the human condition, then sculpting space with honesty and restraint.&rdquo;
+                </p>
+              </div>
+              <Link
+                href="/about"
+                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white text-xs font-semibold uppercase tracking-[0.2em] hover:bg-white hover:text-[#1A1A1A] transition-all"
+              >
+                <span>Studio Monograph</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
             </div>
+          </ScrollReveal>
+
+          {/* Media & Publication Recognition Strip */}
+          <div className="pt-12 flex flex-wrap items-center justify-between gap-6 border-t border-white/10 text-xs font-mono text-[#9B9B9B] uppercase tracking-widest">
+            <span className="text-white">Recognized by:</span>
+            <span>Buildofy Architectural Video Showcase</span>
+            <span>&bull;</span>
+            <span>Architectural Digest India</span>
+            <span>&bull;</span>
+            <span>ArchDaily Selected Works</span>
+            <span>&bull;</span>
+            <span>Indian Architect & Builder</span>
           </div>
         </div>
       </section>

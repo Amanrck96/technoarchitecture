@@ -146,14 +146,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "The interior program unfolds across split-level terraces, where honed concrete surfaces meet warm natural teak and floor-to-ceiling glass apertures that connect family living directly with central water gardens."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1ag9-rtiwkGuReo15Xztn4wy0TezZ9pKw=w1600",
-      "https://lh3.googleusercontent.com/d/15KN7mB0qgXE3XnvjtVXHc7GzIy3BNAVZ=w1600",
-      "https://lh3.googleusercontent.com/d/1I2KkSZ815jwVZag76hn_W4aaSr1bn_m0=w1600",
-      "https://lh3.googleusercontent.com/d/1QyaZGuTXgO7Ee4QPBobRsP-FeovcMly2=w1600",
-      "https://lh3.googleusercontent.com/d/1ah5fvbDyruSc3dt903zkSICJ_zC9FuQB=w1600",
-      "https://lh3.googleusercontent.com/d/1-V_pm98CyhcYzwqbuKUbXQii4Lh6WpMQ=w1600",
-      "https://lh3.googleusercontent.com/d/1Kbvpzs9f05dl_GhzGyhHsnItPd1xXXn-=w1600",
-      "https://lh3.googleusercontent.com/d/17OhgL8IPOG3X1Ob3VG7E7C67Hk0rRyPw=w1600"
+      "/projects/the-mantle-house/1.jpg",
+      "/projects/the-mantle-house/2.jpg",
+      "/projects/the-mantle-house/3.jpg",
+      "/projects/the-mantle-house/4.jpg"
     ]
   },
   {
@@ -177,14 +173,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "A minimalist palette of exposed board-formed concrete, hand-laid brickwork, and natural slate anchors the residence into the surrounding gardens."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1UIPf6FlrVbuGuJp_mFm4TJQOiwIBa--V=w1600",
-      "https://lh3.googleusercontent.com/d/1OjsqrYA9AaVD-TceVS7ygB1vGO5s20BP=w1600",
-      "https://lh3.googleusercontent.com/d/1L2uEmHVKS68VIUKauXy0vzdYJALrfFwe=w1600",
-      "https://lh3.googleusercontent.com/d/1vsJ54a6fQAHQInCzg8JqX1ModCCNTl8C=w1600",
-      "https://lh3.googleusercontent.com/d/1GXtkCWSkztwGU2QAChVh_NcjWR_ssshF=w1600",
-      "https://lh3.googleusercontent.com/d/10er8WHJhehy9mZXjlpjHzWaLG44K-VIK=w1600",
-      "https://lh3.googleusercontent.com/d/1arEmpT9mexPZkr6M8zLLpX-e3UUI2_lv=w1600",
-      "https://lh3.googleusercontent.com/d/1-JOHv3nHo8ZKbDF8LhMS9EUz6-kRWsgP=w1600"
+      "/projects/between-two-trees/1.jpg",
+      "/projects/between-two-trees/2.jpg",
+      "/projects/between-two-trees/3.jpg",
+      "/projects/between-two-trees/4.jpg"
     ]
   },
   {
@@ -208,14 +200,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "The sculptural exterior balances cantilevered concrete canopies with warm natural wood accents, setting a benchmark for modern tropical domestic architecture."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1J7nTJqEawtK6vdctcG79tcWCCqlADPyc=w1600",
-      "https://lh3.googleusercontent.com/d/1pY5oyTdic6kd07XbsJ0JTDArV_-c9Oe3=w1600",
-      "https://lh3.googleusercontent.com/d/1lDKginAoE9PXdPskYACn9KjHj__mklTW=w1600",
-      "https://lh3.googleusercontent.com/d/11EZoI9ONDOB-fL3TNRnRri6sODvenlEK=w1600",
-      "https://lh3.googleusercontent.com/d/1-ooFN0Y70pyME9jo83zhrH6UFBxBggb1=w1600",
-      "https://lh3.googleusercontent.com/d/1mKsw1bJjbxZpe_iupmSwQo-KaOSg6iCN=w1600",
-      "https://lh3.googleusercontent.com/d/1xfHmGQmbLX0a2UBxVXgE_JNjPl7vTFRV=w1600",
-      "https://lh3.googleusercontent.com/d/1crFWX5bMUUH_A01smWjqs_pl6kmmxk0f=w1600"
+      "/projects/belaku/1.jpg",
+      "/projects/belaku/2.jpg",
+      "/projects/belaku/3.jpg",
+      "/projects/belaku/4.jpg"
     ]
   },
   {
@@ -239,14 +227,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "The house utilizes passive climatic strategies including cavity brick masonry, shaded clerestories, and rainwater recharge sumps integrated into the structural foundation."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1d3AtnkM5aC9lQbp1LFxvOIyaO9sJDClT=w1600",
-      "https://lh3.googleusercontent.com/d/1nLP2l_2rFEu4qL9bPC-0bXX2C5uoYYKD=w1600",
-      "https://lh3.googleusercontent.com/d/1X0Bg7b1AS2OTtl-U1qTlO4ihIVH72UiN=w1600",
-      "https://lh3.googleusercontent.com/d/1ilX0K33X6EwOA503rI52IjvX_xoQI78W=w1600",
-      "https://lh3.googleusercontent.com/d/1xGQqNik3kzKG9D7_pNhcOFqQufyd6koG=w1600",
-      "https://lh3.googleusercontent.com/d/11VXoIOs13_C0PVPfjJhvBd1zsY0acvNH=w1600",
-      "https://lh3.googleusercontent.com/d/1hTG6y3BcndwTcTLGnkEzk0xtY2wYhW85=w1600",
-      "https://lh3.googleusercontent.com/d/1lpJRWJvd10g2V-wlf1gnqAYsVI19x6bO=w1600"
+      "/projects/far-site-house/1.jpg",
+      "/projects/far-site-house/2.jpg",
+      "/projects/far-site-house/3.jpg",
+      "/projects/far-site-house/4.jpg"
     ]
   },
   {
@@ -270,14 +254,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "Local stone masonry and fine teak joinery celebrate Karnataka’s rich craft heritage within a crisp modernist architectural language."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/12HC-P7dtJ63KiVE8XLn_exEuWqSkOJ9M=w1600",
-      "https://lh3.googleusercontent.com/d/191LvlKrpBCDTdJ5BFhOjuhciwsmrdIfd=w1600",
-      "https://lh3.googleusercontent.com/d/1QqkDz6WjQyvGxbBYdltxsmQYmY5ZNwMB=w1600",
-      "https://lh3.googleusercontent.com/d/1Wrz--ReqSld0mxYnA6k4c-LjnmpJlPo2=w1600",
-      "https://lh3.googleusercontent.com/d/1_Uo6fNLjgkEl1o_iAU1tJH9iZKcawDdX=w1600",
-      "https://lh3.googleusercontent.com/d/1tZzax0cg3u3HfR23uKugeOGOXdWtGyJK=w1600",
-      "https://lh3.googleusercontent.com/d/186LAiuuD9yn4ipUkSdAkpPgA3D_EPsYZ=w1600",
-      "https://lh3.googleusercontent.com/d/1N210iEm9sF608pzFRmpuOTQc_wQHb25g=w1600"
+      "/projects/aikya/1.jpg",
+      "/projects/aikya/2.jpg",
+      "/projects/aikya/3.jpg",
+      "/projects/aikya/4.jpg"
     ]
   },
   {
@@ -301,14 +281,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "Smoked glass, dark architectural steel, and fair-faced concrete form an uncompromising, timeless exterior silhouette."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/15-H_r-7iVndsiC3jF0OM_AQhZ113W1nE=w1600",
-      "https://lh3.googleusercontent.com/d/1A7Zd-lqLz_hcna7S9kPuzsa5poD8gYca=w1600",
-      "https://lh3.googleusercontent.com/d/1e0Wq2rCiHv1V-ID_cEo4YRvo29LyqQNj=w1600",
-      "https://lh3.googleusercontent.com/d/1MN4sf-ZpjDmLf07ml5JTDMB4PyPMdHYk=w1600",
-      "https://lh3.googleusercontent.com/d/1HNJq86W-cDRio7aGc9F2o6GsHZU_yABm=w1600",
-      "https://lh3.googleusercontent.com/d/1uRzbLHV7tTSHHRj7FgUx5OECtxQCQK7P=w1600",
-      "https://lh3.googleusercontent.com/d/1bWA-WocI4vXEww2bqp00Cf6a__KIYnTa=w1600",
-      "https://lh3.googleusercontent.com/d/1aJTmC2gUJIdiB7skyM2tg2BO5oloxxe7=w1600"
+      "/projects/house-in-the-air/1.jpg",
+      "/projects/house-in-the-air/2.jpg",
+      "/projects/house-in-the-air/3.jpg",
+      "/projects/house-in-the-air/4.jpg"
     ]
   },
   {
@@ -332,14 +308,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "Natural Kota stone flooring, exposed concrete ceilings, and hand-finished timber joinery create a warm, grounding atmosphere."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1TlcSizts1S0qECoftRKaEXV9zcDQuq9b=w1600",
-      "https://lh3.googleusercontent.com/d/1Vb7ZvBD_aP8pfEox3Jxc-PqIBtXL8t0B=w1600",
-      "https://lh3.googleusercontent.com/d/1JT6r9zBYow_gnjZ-Wk8S_-2To-DLlR7s=w1600",
-      "https://lh3.googleusercontent.com/d/1fnXKUn_QiVMsYpziq4WTyiYC3Ol0i13P=w1600",
-      "https://lh3.googleusercontent.com/d/1RLCXP-wUUtZ9QCfWhcdtrFJpHdVGo4oG=w1600",
-      "https://lh3.googleusercontent.com/d/1b4t3j6bQ9_h1UzOkCS1LBSUln6dBj3px=w1600",
-      "https://lh3.googleusercontent.com/d/1KTpu61T9awMvlKbKV8b6n09Gx0wPSAeY=w1600",
-      "https://lh3.googleusercontent.com/d/1O2vUBElm8qsTBVefu79YGYtLjSCfKmFB=w1600"
+      "/projects/kanasu/1.jpg",
+      "/projects/kanasu/2.jpg",
+      "/projects/kanasu/3.jpg",
+      "/projects/kanasu/4.jpg"
     ]
   },
   {
@@ -363,14 +335,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "The estate incorporates advanced sustainable systems including geothermal pre-cooling, rainwater storage, and high-efficiency smart home automation."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1mLO_7ZniCl-EQ-HUYxLaLUxVFg0OSKv0=w1600",
-      "https://lh3.googleusercontent.com/d/1tBPc3ITGYE2U44pez6xuhrw4f9OLFtBM=w1600",
-      "https://lh3.googleusercontent.com/d/1F0Nd5sumek1o-6MV9fxdijn9bGcPqs1e=w1600",
-      "https://lh3.googleusercontent.com/d/17L_io7EJlzswpNn7JvTgCM6NPFYxj-xb=w1600",
-      "https://lh3.googleusercontent.com/d/1h4-85uCRuVolxxG3EF7lJDJQXVYexzHg=w1600",
-      "https://lh3.googleusercontent.com/d/1451vv_d1-XlMtB1pNn_tme8Dp0bGGV7b=w1600",
-      "https://lh3.googleusercontent.com/d/1Gpinsuvpfvnqh59jRLJJ_9jhRvH1vTq6=w1600",
-      "https://lh3.googleusercontent.com/d/1XXbXPNGbmvWAjSGSSKlR_m-WtjXey9Yn=w1600"
+      "/projects/kripa/1.jpg",
+      "/projects/kripa/2.jpg",
+      "/projects/kripa/3.jpg",
+      "/projects/kripa/4.jpg"
     ]
   },
   {
@@ -394,14 +362,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "Every material was chosen for its tactile honesty — hand-dressed granite, natural teak, and patinated brass fittings that age gracefully with time."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1O0M20FPXx1yU4MbZe15DcuHE5wRu2Lbx=w1600",
-      "https://lh3.googleusercontent.com/d/1MmZMzs-XiaHqnIL3RCK58ngRDPIlzW6k=w1600",
-      "https://lh3.googleusercontent.com/d/1QKRu46yVrL-ZXJTvXf0FvDCkj-T399lB=w1600",
-      "https://lh3.googleusercontent.com/d/1sWImE-XlK60wR85H8Y1vecfs_cdvb33H=w1600",
-      "https://lh3.googleusercontent.com/d/1WbLGGzQYnTMPaBbt3GrL6h9N9eGNJi2Y=w1600",
-      "https://lh3.googleusercontent.com/d/1DhzQxmNuXBb_4IXe6j0c4orQS3S1-qgE=w1600",
-      "https://lh3.googleusercontent.com/d/1EVhZb9LdHDuqj0z8a-Y8apcTKcHbSX47=w1600",
-      "https://lh3.googleusercontent.com/d/1f0TiI88SvOpkNzfhFOFTXL5g7WP0u8fY=w1600"
+      "/projects/brindavan/1.jpg",
+      "/projects/brindavan/2.jpg",
+      "/projects/brindavan/3.jpg",
+      "/projects/brindavan/4.jpg"
     ]
   },
   {
@@ -425,14 +389,10 @@ export const SAMPLE_PROJECTS: SampleProject[] = [
       "The interior architecture features bespoke millwork, fluted stone wall accents, and custom lighting choreography designed specifically for the residence."
     ],
     "galleryImageUrls": [
-      "https://lh3.googleusercontent.com/d/1jI3Yv1xM9L3FeDbLwlHOhthz0FKVl0gq=w1600",
-      "https://lh3.googleusercontent.com/d/1O39g84TydRaPUUpd2NNNGPlibMnltma7=w1600",
-      "https://lh3.googleusercontent.com/d/1RrJP6fXYHRJf7ZnnnVTRUnYpMc8m3gm5=w1600",
-      "https://lh3.googleusercontent.com/d/1kVMAcEM2tNRE0BME2MdtqhDFhMaY5aYl=w1600",
-      "https://lh3.googleusercontent.com/d/1sSEYS_5w87_TyKh5GgR1hlFO8Pg5vGpc=w1600",
-      "https://lh3.googleusercontent.com/d/17KAFXOADQKXPfHhZsMo38rx2D-W-0gyL=w1600",
-      "https://lh3.googleusercontent.com/d/1_N0WnT4JYTwv9WoOub14UlAK0tclN3_c=w1600",
-      "https://lh3.googleusercontent.com/d/1QHRE8yzc5eyj77-1f19GzaJfOh8MD0P6=w1600"
+      "/projects/salut/1.jpg",
+      "/projects/salut/2.jpg",
+      "/projects/salut/3.jpg",
+      "/projects/salut/4.jpg"
     ]
   }
 ];
