@@ -12,13 +12,34 @@ export default function ContentBlocksAdminPage() {
     body: "",
   });
 
+  const defaultBlocks = [
+    { key: 'hero-tagline', title: 'Hero Tagline', body: 'Designing Spaces. Defining Futures.' },
+    { key: 'hero-subtext', title: 'Hero Subtext', body: 'We craft meaningful architectural experiences that endure.' },
+    { key: 'vision', title: 'Vision', body: 'To be a leading architecture studio that shapes the built environment with purpose, innovation, and timeless design principles.' },
+    { key: 'mission', title: 'Mission', body: 'We create architectural solutions that harmonise with their environment, serve their users, and stand as a testament to thoughtful design and technical excellence.' },
+    { key: 'why-us', title: 'Why Techno?', body: 'We bring together technical precision and creative vision, delivering projects on time, within budget, and beyond expectation.' },
+    { key: 'contact-address', title: 'Office Address', body: 'Techno Architecture\n123 Design Street\nYour City, State 000000' },
+    { key: 'contact-phone', title: 'Phone', body: '+91 00000 00000' },
+    { key: 'contact-email', title: 'Email', body: 'info@technoarchitecture.in' },
+  ];
+
   const fetchBlocks = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/content-blocks");
-      if (res.ok) setBlocks(await res.json());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setBlocks(data);
+        } else {
+          setBlocks(defaultBlocks);
+        }
+      } else {
+        setBlocks(defaultBlocks);
+      }
     } catch (error) {
       console.error(error);
+      setBlocks(defaultBlocks);
     }
     setLoading(false);
   };
@@ -45,14 +66,21 @@ export default function ContentBlocksAdminPage() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/admin/content-blocks/${editingItem.key}`, {
+      const res = await fetch("/api/admin/content-blocks", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          key: editingItem.key,
+          title: formData.title,
+          body: formData.body,
+        }),
       });
       if (res.ok) {
         fetchBlocks();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to update content block");
       }
     } catch (error) {
       console.error(error);

@@ -20,16 +20,62 @@ export default function ProjectsAdminPage() {
     order: 0,
   });
 
+  const defaultProjects = [
+    {
+      id: 'placeholder-p1',
+      title: 'The Residence at Elm Grove',
+      slug: 'residence-elm-grove',
+      location: 'Mumbai, Maharashtra',
+      year: 2024,
+      status: 'COMPLETED',
+      coverImage: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
+      description: 'A contemporary family residence that blends modernist geometry with warm natural materials.',
+      featured: true,
+      order: 1,
+    },
+    {
+      id: 'placeholder-p2',
+      title: 'Horizon Commercial Complex',
+      slug: 'horizon-commercial-complex',
+      location: 'Pune, Maharashtra',
+      year: 2023,
+      status: 'COMPLETED',
+      coverImage: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
+      description: 'A mixed-use commercial development spanning 12,000 sqft with natural ventilation and daylighting.',
+      featured: true,
+      order: 2,
+    },
+    {
+      id: 'placeholder-p3',
+      title: 'The Cultural Arts Centre',
+      slug: 'cultural-arts-centre',
+      location: 'Bangalore, Karnataka',
+      year: 2025,
+      status: 'ONGOING',
+      coverImage: 'https://images.unsplash.com/photo-1554366347-b8e9e1f77f6e?w=1200&q=80',
+      description: 'A community-centred arts and cultural facility currently under development.',
+      featured: true,
+      order: 3,
+    },
+  ];
+
   const fetchProjects = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/projects");
       if (res.ok) {
         const data = await res.json();
-        setProjects(data);
+        if (Array.isArray(data) && data.length > 0) {
+          setProjects(data);
+        } else {
+          setProjects(defaultProjects);
+        }
+      } else {
+        setProjects(defaultProjects);
       }
     } catch (error) {
       console.error("Failed to fetch projects", error);
+      setProjects(defaultProjects);
     }
     setLoading(false);
   };
@@ -84,18 +130,18 @@ export default function ProjectsAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/projects/${editingItem.id}` : "/api/admin/projects";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/projects", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
 
       if (res.ok) {
         fetchProjects();
         handleCloseModal();
       } else {
-        alert("Failed to save project");
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save project");
       }
     } catch (error) {
       console.error("Save error:", error);
@@ -105,9 +151,12 @@ export default function ProjectsAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
     try {
-      const res = await fetch(`/api/admin/projects/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/projects?id=${id}`, { method: "DELETE" });
       if (res.ok) {
         fetchProjects();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete project");
       }
     } catch (error) {
       console.error("Delete error:", error);

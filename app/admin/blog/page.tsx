@@ -18,13 +18,36 @@ export default function BlogAdminPage() {
     publishedAt: "",
   });
 
+  const defaultPosts = [
+    {
+      id: 'placeholder-blog-1',
+      title: 'Designing for the Future: Sustainability in Architecture',
+      slug: 'designing-for-the-future',
+      coverImage: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1200&q=80',
+      excerpt: 'Sustainability is woven into every project we undertake. Here is how we approach responsible design.',
+      content: 'At Techno Architecture, sustainability isn\'t an afterthought — it\'s woven into the foundation of every project we undertake.',
+      author: 'Techno Architecture',
+      publishedAt: new Date().toISOString(),
+    },
+  ];
+
   const fetchPosts = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/blog");
-      if (res.ok) setPosts(await res.json());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setPosts(data);
+        } else {
+          setPosts(defaultPosts);
+        }
+      } else {
+        setPosts(defaultPosts);
+      }
     } catch (error) {
       console.error(error);
+      setPosts(defaultPosts);
     }
     setLoading(false);
   };
@@ -63,15 +86,17 @@ export default function BlogAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/blog/${editingItem.id}` : "/api/admin/blog";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/blog", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchPosts();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save post");
       }
     } catch (error) {
       console.error(error);
@@ -81,8 +106,13 @@ export default function BlogAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/blog/${id}`, { method: "DELETE" });
-      if (res.ok) fetchPosts();
+      const res = await fetch(`/api/admin/blog?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchPosts();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete post");
+      }
     } catch (error) {
       console.error(error);
     }

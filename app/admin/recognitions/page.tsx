@@ -55,15 +55,17 @@ export default function RecognitionsAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/recognitions/${editingItem.id}` : "/api/admin/recognitions";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/recognitions", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchRecognitions();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save recognition");
       }
     } catch (error) {
       console.error(error);
@@ -73,8 +75,13 @@ export default function RecognitionsAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/recognitions/${id}`, { method: "DELETE" });
-      if (res.ok) fetchRecognitions();
+      const res = await fetch(`/api/admin/recognitions?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchRecognitions();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete recognition");
+      }
     } catch (error) {
       console.error(error);
     }

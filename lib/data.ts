@@ -65,11 +65,11 @@ export const FALLBACK_PROJECTS: Project[] = [
     year: 2024,
     status: 'COMPLETED',
     coverImageUrl: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
-    galleryImageUrls: [
+    galleryImageUrls: JSON.stringify([
       'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
       'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
       'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
-    ],
+    ]),
     description:
       'A contemporary family residence that blends modernist geometry with warm natural materials. The home is designed around a central courtyard, allowing light to permeate every space while maintaining complete privacy from surrounding urban density.',
     featured: true,
@@ -85,10 +85,10 @@ export const FALLBACK_PROJECTS: Project[] = [
     year: 2023,
     status: 'COMPLETED',
     coverImageUrl: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
-    galleryImageUrls: [
+    galleryImageUrls: JSON.stringify([
       'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1200&q=80',
       'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80',
-    ],
+    ]),
     description:
       'A mixed-use commercial development spanning 12,000 sqft. The design prioritises natural ventilation and daylighting, achieving a 30% reduction in energy consumption through passive solar orientation and high-performance ceramic louvers.',
     featured: true,
@@ -104,10 +104,10 @@ export const FALLBACK_PROJECTS: Project[] = [
     year: 2025,
     status: 'ONGOING',
     coverImageUrl: 'https://images.unsplash.com/photo-1554366347-b8e9e1f77f6e?w=1200&q=80',
-    galleryImageUrls: [
+    galleryImageUrls: JSON.stringify([
       'https://images.unsplash.com/photo-1554366347-b8e9e1f77f6e?w=1200&q=80',
       'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1200&q=80',
-    ],
+    ]),
     description:
       'A community-centred arts and cultural facility currently under development. The design draws from regional craft traditions while employing contemporary timber and concrete construction methods.',
     featured: true,
@@ -123,10 +123,10 @@ export const FALLBACK_PROJECTS: Project[] = [
     year: 2024,
     status: 'COMPLETED',
     coverImageUrl: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80',
-    galleryImageUrls: [
+    galleryImageUrls: JSON.stringify([
       'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=1200&q=80',
       'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
-    ],
+    ]),
     description:
       'An elevated coastal retreat featuring panoramic ocean views, exposed laterite and cast-in-place concrete walls, and open terraces shaded by indigenous timber pergolas.',
     featured: false,
@@ -223,7 +223,7 @@ export const FALLBACK_TEAM: TeamMember[] = [
     role: 'Founder & Principal Architect',
     bio: 'With over two decades of architectural leadership, Rajesh guides the studio with a philosophy rooted in geometric rigor, contextual honesty, and spatial serenity.',
     photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    socialLinks: {},
+    socialLinks: '{}',
     order: 1,
     createdAt: new Date(),
   },
@@ -233,7 +233,7 @@ export const FALLBACK_TEAM: TeamMember[] = [
     role: 'Senior Design Associate',
     bio: 'Specializing in residential architecture and bioclimatic planning, Ananya translates nuanced client briefs into sculptural, enduring built forms.',
     photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-    socialLinks: {},
+    socialLinks: '{}',
     order: 2,
     createdAt: new Date(),
   },
@@ -243,7 +243,7 @@ export const FALLBACK_TEAM: TeamMember[] = [
     role: 'Lead Technical Architect',
     bio: 'Overseeing complex structural coordination and parametric design workflows, Vikramaditya bridges architectural vision with advanced engineering execution.',
     photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-    socialLinks: {},
+    socialLinks: '{}',
     order: 3,
     createdAt: new Date(),
   },

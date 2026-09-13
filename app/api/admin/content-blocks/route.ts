@@ -29,11 +29,23 @@ export async function PUT(request: Request) {
   try {
     await requireAdmin();
     const data = await request.json();
-    const { id, ...rest } = data;
-    const item = await prisma.contentBlock.update({
-      where: { id },
-      data: rest,
-    });
+    const { id, key, ...rest } = data;
+    
+    let item;
+    if (key) {
+      item = await prisma.contentBlock.upsert({
+        where: { key },
+        update: rest,
+        create: { key, ...rest },
+      });
+    } else if (id) {
+      item = await prisma.contentBlock.update({
+        where: { id },
+        data: rest,
+      });
+    } else {
+      return NextResponse.json({ error: 'Missing id or key' }, { status: 400 });
+    }
     return NextResponse.json(item);
   } catch (error: any) {
     if (error.message === 'Unauthorized') return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

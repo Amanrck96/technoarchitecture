@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-export const resend = new Resend(process.env.RESEND_API_KEY)
+export const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_for_build')
 
 export async function sendContactEmail(data: {
   name: string
@@ -9,10 +9,11 @@ export async function sendContactEmail(data: {
   message: string
 }) {
   if (!process.env.RESEND_API_KEY || !process.env.CONTACT_EMAIL_TO) {
-    console.log('Email not configured, skipping send')
+    console.log('Email not configured (RESEND_API_KEY or CONTACT_EMAIL_TO missing), skipping email send')
     return
   }
-  await resend.emails.send({
+  const client = new Resend(process.env.RESEND_API_KEY)
+  await client.emails.send({
     from: 'Techno Architecture <no-reply@technoarchitecture.in>',
     to: process.env.CONTACT_EMAIL_TO,
     subject: `New Contact Enquiry from ${data.name}`,

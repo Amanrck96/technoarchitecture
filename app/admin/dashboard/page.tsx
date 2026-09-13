@@ -18,30 +18,43 @@ export const dynamic = 'force-dynamic'
 export default async function DashboardPage() {
   await requireAdmin()
 
-  const [
-    projectsCount,
-    teamMembersCount,
-    servicesCount,
-    blogPostsCount,
-    galleryImagesCount,
-    testimonialsCount,
-    faqsCount,
-    inquiriesCount,
-    recentInquiries
-  ] = await Promise.all([
-    prisma.project.count(),
-    prisma.teamMember.count(),
-    prisma.service.count(),
-    prisma.blogPost.count(),
-    prisma.galleryImage.count(),
-    prisma.testimonial.count(),
-    prisma.faqItem.count(),
-    prisma.contactSubmission.count(),
-    prisma.contactSubmission.findMany({
-      take: 5,
-      orderBy: { createdAt: 'desc' }
-    })
-  ])
+  let projectsCount = 0
+  let teamMembersCount = 0
+  let servicesCount = 0
+  let blogPostsCount = 0
+  let galleryImagesCount = 0
+  let testimonialsCount = 0
+  let faqsCount = 0
+  let inquiriesCount = 0
+  let recentInquiries: any[] = []
+
+  try {
+    const res = await Promise.all([
+      prisma.project.count(),
+      prisma.teamMember.count(),
+      prisma.service.count(),
+      prisma.blogPost.count(),
+      prisma.galleryImage.count(),
+      prisma.testimonial.count(),
+      prisma.faqItem.count(),
+      prisma.contactSubmission.count(),
+      prisma.contactSubmission.findMany({
+        take: 5,
+        orderBy: { createdAt: 'desc' }
+      })
+    ])
+    projectsCount = res[0]
+    teamMembersCount = res[1]
+    servicesCount = res[2]
+    blogPostsCount = res[3]
+    galleryImagesCount = res[4]
+    testimonialsCount = res[5]
+    faqsCount = res[6]
+    inquiriesCount = res[7]
+    recentInquiries = res[8]
+  } catch (e) {
+    console.warn('Dashboard DB query error:', e)
+  }
 
   const stats = [
     { name: 'Projects', value: projectsCount, icon: FolderOpen, href: '/admin/projects' },

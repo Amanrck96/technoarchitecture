@@ -7,9 +7,14 @@ export const dynamic = 'force-dynamic'
 export default async function ContactSubmissionsPage() {
   await requireAdmin()
 
-  const submissions = await prisma.contactSubmission.findMany({
-    orderBy: { createdAt: 'desc' }
-  })
+  let submissions: any[] = []
+  try {
+    submissions = await prisma.contactSubmission.findMany({
+      orderBy: { createdAt: 'desc' }
+    })
+  } catch (e) {
+    console.warn('Contact submissions DB error:', e)
+  }
 
   return (
     <div className="p-8 max-w-7xl mx-auto">

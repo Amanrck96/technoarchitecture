@@ -54,15 +54,17 @@ export default function ServicesAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/services/${editingItem.id}` : "/api/admin/services";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/services", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchServices();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save service");
       }
     } catch (error) {
       console.error(error);
@@ -72,8 +74,13 @@ export default function ServicesAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/services/${id}`, { method: "DELETE" });
-      if (res.ok) fetchServices();
+      const res = await fetch(`/api/admin/services?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchServices();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete service");
+      }
     } catch (error) {
       console.error(error);
     }

@@ -16,13 +16,40 @@ export default function TestimonialsAdminPage() {
     order: 0,
   });
 
+  const defaultTestimonials = [
+    {
+      id: 'placeholder-testimonial-1',
+      clientName: 'Rajesh Kumar',
+      company: 'Homeowner, Mumbai',
+      quote: 'Techno Architecture transformed our vision into a home that is both beautiful and deeply functional. The team\'s attention to detail and dedication to our brief was exceptional.',
+      order: 1,
+    },
+    {
+      id: 'placeholder-testimonial-2',
+      clientName: 'Priya Nair',
+      company: 'Director, Nair Developments',
+      quote: 'Working with Techno Architecture on our commercial project was a seamless experience. They delivered on time, within budget, and exceeded our design expectations.',
+      order: 2,
+    },
+  ];
+
   const fetchTestimonials = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/testimonials");
-      if (res.ok) setTestimonials(await res.json());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setTestimonials(data);
+        } else {
+          setTestimonials(defaultTestimonials);
+        }
+      } else {
+        setTestimonials(defaultTestimonials);
+      }
     } catch (error) {
       console.error(error);
+      setTestimonials(defaultTestimonials);
     }
     setLoading(false);
   };
@@ -55,15 +82,17 @@ export default function TestimonialsAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/testimonials/${editingItem.id}` : "/api/admin/testimonials";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/testimonials", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchTestimonials();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save testimonial");
       }
     } catch (error) {
       console.error(error);
@@ -73,8 +102,13 @@ export default function TestimonialsAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/testimonials/${id}`, { method: "DELETE" });
-      if (res.ok) fetchTestimonials();
+      const res = await fetch(`/api/admin/testimonials?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchTestimonials();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete testimonial");
+      }
     } catch (error) {
       console.error(error);
     }

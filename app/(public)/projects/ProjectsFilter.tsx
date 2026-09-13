@@ -10,7 +10,7 @@ type Project = {
   slug: string
   location: string
   year: number
-  status: 'COMPLETED' | 'ONGOING'
+  status: string
   coverImageUrl: string
   description: string
 }

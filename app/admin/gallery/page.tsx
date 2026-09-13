@@ -53,15 +53,17 @@ export default function GalleryAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/gallery/${editingItem.id}` : "/api/admin/gallery";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/gallery", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchGallery();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save gallery image");
       }
     } catch (error) {
       console.error(error);
@@ -71,8 +73,13 @@ export default function GalleryAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/gallery/${id}`, { method: "DELETE" });
-      if (res.ok) fetchGallery();
+      const res = await fetch(`/api/admin/gallery?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchGallery();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete image");
+      }
     } catch (error) {
       console.error(error);
     }

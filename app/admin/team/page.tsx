@@ -16,16 +16,42 @@ export default function TeamAdminPage() {
     order: 0,
   });
 
+  const defaultTeam = [
+    {
+      id: 'placeholder-team-0',
+      name: 'Principal Architect',
+      role: 'Founder & Principal Architect',
+      bio: 'With over 15 years of experience leading architectural projects across India.',
+      photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+      order: 1,
+    },
+    {
+      id: 'placeholder-team-1',
+      name: 'Lead Designer',
+      role: 'Senior Design Architect',
+      bio: 'Specialising in residential and hospitality projects with a keen eye for spatial quality.',
+      photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
+      order: 2,
+    },
+  ];
+
   const fetchTeam = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/team");
       if (res.ok) {
         const data = await res.json();
-        setTeam(data);
+        if (Array.isArray(data) && data.length > 0) {
+          setTeam(data);
+        } else {
+          setTeam(defaultTeam);
+        }
+      } else {
+        setTeam(defaultTeam);
       }
     } catch (error) {
       console.error("Failed to fetch team members", error);
+      setTeam(defaultTeam);
     }
     setLoading(false);
   };
@@ -69,18 +95,18 @@ export default function TeamAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/team/${editingItem.id}` : "/api/admin/team";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/team", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
 
       if (res.ok) {
         fetchTeam();
         handleCloseModal();
       } else {
-        alert("Failed to save team member");
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save team member");
       }
     } catch (error) {
       console.error("Save error:", error);
@@ -90,8 +116,13 @@ export default function TeamAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this team member?")) return;
     try {
-      const res = await fetch(`/api/admin/team/${id}`, { method: "DELETE" });
-      if (res.ok) fetchTeam();
+      const res = await fetch(`/api/admin/team?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchTeam();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete team member");
+      }
     } catch (error) {
       console.error("Delete error:", error);
     }

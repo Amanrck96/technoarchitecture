@@ -13,13 +13,44 @@ export default function FaqAdminPage() {
     order: 0,
   });
 
+  const defaultFaqs = [
+    {
+      id: 'placeholder-faq-1',
+      question: 'What types of projects does Techno Architecture undertake?',
+      answer: 'We work across residential, commercial, institutional, and mixed-use developments. From bespoke private residences to large-scale commercial complexes, we bring the same rigour and creativity to every brief.',
+      order: 1,
+    },
+    {
+      id: 'placeholder-faq-2',
+      question: 'How do I start a project with Techno Architecture?',
+      answer: 'Begin by reaching out through our contact page. We will schedule an initial consultation to understand your vision, site, and brief. From there, we develop a proposal outlining scope, timeline, and fees.',
+      order: 2,
+    },
+    {
+      id: 'placeholder-faq-3',
+      question: 'What is your design process?',
+      answer: 'Our process moves through concept design, design development, documentation, and construction administration. We maintain close collaboration with clients at every stage to ensure the final outcome reflects the original vision.',
+      order: 3,
+    },
+  ];
+
   const fetchFaqs = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/admin/faq");
-      if (res.ok) setFaqs(await res.json());
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setFaqs(data);
+        } else {
+          setFaqs(defaultFaqs);
+        }
+      } else {
+        setFaqs(defaultFaqs);
+      }
     } catch (error) {
       console.error(error);
+      setFaqs(defaultFaqs);
     }
     setLoading(false);
   };
@@ -52,15 +83,17 @@ export default function FaqAdminPage() {
     e.preventDefault();
     try {
       const method = editingItem ? "PUT" : "POST";
-      const url = editingItem ? `/api/admin/faq/${editingItem.id}` : "/api/admin/faq";
-      const res = await fetch(url, {
+      const res = await fetch("/api/admin/faq", {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(editingItem ? { ...formData, id: editingItem.id } : formData),
       });
       if (res.ok) {
         fetchFaqs();
         handleCloseModal();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to save FAQ");
       }
     } catch (error) {
       console.error(error);
@@ -70,8 +103,13 @@ export default function FaqAdminPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure?")) return;
     try {
-      const res = await fetch(`/api/admin/faq/${id}`, { method: "DELETE" });
-      if (res.ok) fetchFaqs();
+      const res = await fetch(`/api/admin/faq?id=${id}`, { method: "DELETE" });
+      if (res.ok) {
+        fetchFaqs();
+      } else {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Failed to delete FAQ");
+      }
     } catch (error) {
       console.error(error);
     }
