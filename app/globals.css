@@ -4,7 +4,11 @@
   --color-brand-dark: #1A1A1A;
   --color-brand-grey: #4A4A4A;
   --color-brand-light: #9B9B9B;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-brand-muted: #767676;
+  --color-brand-border: #E5E5E5;
+  --color-brand-ivory: #F9F9F9;
+  --font-serif: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 @layer base {
@@ -14,12 +18,19 @@
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
   body {
-    @apply bg-white text-[#1A1A1A] font-sans;
+    background-color: #FFFFFF;
+    color: #1A1A1A;
+    font-family: var(--font-sans), 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  h1, h2, h3, .font-serif {
+    font-family: var(--font-serif), 'Cormorant Garamond', Georgia, serif;
   }
   ::selection {
-    @apply bg-[#1A1A1A] text-white;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
   }
 }
 

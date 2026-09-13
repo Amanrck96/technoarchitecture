@@ -1,17 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
   { href: '/projects', label: 'Projects' },
+  { href: '/services', label: 'Services' },
   { href: '/team', label: 'Team' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/recognitions', label: 'Recognitions' },
+  { href: '/blog', label: 'Journal' },
+  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -21,7 +25,7 @@ export default function Navbar() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60)
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -34,75 +38,109 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-transparent'
+          scrolled
+            ? 'bg-white/95 backdrop-blur-md border-b border-[#E5E5E5] py-3.5 shadow-xs'
+            : 'bg-white/80 backdrop-blur-xs py-5 border-b border-transparent'
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+        <nav className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+          {/* Logo (Horizontal wordmark: TECHNO in dark charcoal, ARCHITECTURE in muted grey) */}
+          <Link href="/" className="flex items-center group">
             <Image
               src="/logo/logo-horizontal.png"
               alt="Techno Architecture"
-              width={240}
-              height={32}
-              className="h-7 w-auto object-contain"
+              width={220}
+              height={30}
+              className="h-7 w-auto object-contain transition-opacity group-hover:opacity-80"
               priority
             />
           </Link>
 
-          {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`text-xs font-medium tracking-widest uppercase transition-colors ${
-                    scrolled ? 'text-[#4A4A4A] hover:text-[#1A1A1A]' : 'text-white/90 hover:text-white'
-                  } ${pathname === link.href ? (scrolled ? 'text-[#1A1A1A]' : 'text-white') : ''}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          {/* Desktop Navigation Links */}
+          <ul className="hidden xl:flex items-center gap-7">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`relative text-[11px] font-medium tracking-[0.2em] uppercase transition-colors py-1 ${
+                      isActive ? 'text-[#1A1A1A] font-semibold' : 'text-[#767676] hover:text-[#1A1A1A]'
+                    }`}
+                  >
+                    {link.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-[#1A1A1A]" />
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
 
-          {/* Mobile hamburger */}
+          {/* Right Action / Consultation Trigger */}
+          <div className="hidden lg:flex items-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] bg-[#1A1A1A] text-white hover:bg-[#4A4A4A] transition-all rounded-none"
+            >
+              <span>Start Project</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          {/* Mobile hamburger menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            className={`lg:hidden flex flex-col gap-1.5 p-2 ${
-              scrolled ? 'text-[#1A1A1A]' : 'text-white'
-            }`}
+            aria-label="Toggle navigation menu"
+            className="xl:hidden p-2 text-[#1A1A1A] hover:text-[#4A4A4A] focus:outline-none"
           >
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-            <span className={`block w-6 h-0.5 bg-current transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </nav>
       </header>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile Drawer Overlay */}
       <div
-        className={`fixed inset-0 z-40 bg-[#1A1A1A] transition-all duration-500 ${
+        className={`fixed inset-0 z-40 bg-[#1A1A1A] transition-all duration-400 xl:hidden ${
           menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-start justify-center h-full px-8">
-          <ul className="space-y-6">
-            {navLinks.map((link, i) => (
-              <li key={link.href} style={{ transitionDelay: `${i * 50}ms` }}>
-                <Link
-                  href={link.href}
-                  className="text-3xl font-light text-white tracking-wide hover:text-[#9B9B9B] transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-12 space-y-2 text-[#9B9B9B] text-sm">
-            <p>info@technoarchitecture.in</p>
-            <p>+91 00000 00000</p>
+        <div className="flex flex-col justify-between h-full px-8 pt-24 pb-12 overflow-y-auto">
+          <div>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-[#9B9B9B] block mb-6">
+              Studio Navigation
+            </span>
+            <ul className="space-y-4">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={`text-2xl font-serif tracking-wide block transition-colors ${
+                        isActive ? 'text-white underline underline-offset-8' : 'text-[#9B9B9B] hover:text-white'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+
+          <div className="pt-8 mt-8 border-t border-white/10 space-y-3">
+            <p className="text-xs text-[#9B9B9B] uppercase tracking-widest">Techno Architecture Studio</p>
+            <p className="text-sm text-white">#42, 12th Main Road, Indiranagar, Bengaluru</p>
+            <p className="text-sm text-white/70">info@technoarchitecture.in</p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 mt-4 px-5 py-3 text-xs uppercase tracking-widest bg-white text-[#1A1A1A] font-semibold"
+            >
+              <span>Initiate Collaboration</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
         </div>
       </div>

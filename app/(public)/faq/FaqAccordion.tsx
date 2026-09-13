@@ -1,36 +1,68 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Plus, Minus } from 'lucide-react'
+import type { SampleFaqItem } from '@/lib/sample-data'
 
-interface FaqItem {
-  id: string
-  question: string
-  answer: string
-}
+export default function FaqAccordion({ items }: { items: SampleFaqItem[] }) {
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id || null)
 
-export default function FaqAccordion({ items }: { items: FaqItem[] }) {
-  const [open, setOpen] = useState<string | null>(null)
+  const toggle = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id))
+  }
 
   return (
-    <div className="divide-y divide-gray-100">
-      {items.map((item) => (
-        <div key={item.id}>
-          <button
-            onClick={() => setOpen(open === item.id ? null : item.id)}
-            className="w-full py-6 flex items-center justify-between text-left group"
-          >
-            <span className="text-[#1A1A1A] font-medium pr-8 group-hover:text-[#4A4A4A] transition-colors">
-              {item.question}
-            </span>
-            <span className={`text-2xl text-[#9B9B9B] transition-transform duration-300 flex-shrink-0 ${open === item.id ? 'rotate-45' : ''}`}>
-              +
-            </span>
-          </button>
-          <div className={`overflow-hidden transition-all duration-300 ${open === item.id ? 'max-h-96 pb-6' : 'max-h-0'}`}>
-            <p className="text-[#4A4A4A] leading-relaxed">{item.answer}</p>
+    <div className="divide-y divide-[#E5E5E5] border-y border-[#E5E5E5]">
+      {items.map((item, index) => {
+        const isOpen = openId === item.id
+        const itemNumber = String(index + 1).padStart(2, '0')
+
+        return (
+          <div key={item.id} className="py-6 transition-colors">
+            <button
+              type="button"
+              onClick={() => toggle(item.id)}
+              className="w-full flex items-start justify-between text-left group gap-4 cursor-pointer"
+              aria-expanded={isOpen}
+            >
+              <div className="flex items-start gap-4">
+                <span className="text-xs font-mono text-[#9B9B9B] pt-1">
+                  [{itemNumber}]
+                </span>
+                <div>
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#767676] block mb-1">
+                    {item.category}
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-serif font-normal text-[#1A1A1A] group-hover:text-[#4A4A4A] transition-colors leading-snug">
+                    {item.question}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="w-8 h-8 rounded-full border border-[#E5E5E5] flex items-center justify-center text-[#1A1A1A] shrink-0 group-hover:border-[#1A1A1A] transition-colors mt-1">
+                {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+              </div>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="pl-10 pr-4 pt-4 text-sm text-[#4A4A4A] font-light leading-relaxed">
+                    {item.answer}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
